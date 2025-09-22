@@ -1,1 +1,438 @@
-
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>21 de Septiembre - Flores Amarillas para Estefany</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            background: #000;
+            color: #fff;
+        }
+        
+        .dancing-script {
+            font-family: 'Dancing Script', cursive;
+        }
+        
+        /* Animación inicial de la flor brotando */
+        .intro-flower {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            font-size: 20rem;
+            z-index: 1000;
+            animation: bloomFlower 3s ease-out forwards;
+        }
+        
+        @keyframes bloomFlower {
+            0% {
+                transform: translate(-50%, -50%) scale(0) rotate(0deg);
+                opacity: 0;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.2) rotate(180deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(0) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Contenido principal oculto inicialmente */
+        .main-content {
+            opacity: 0;
+            animation: fadeInContent 2s ease-in 3s forwards;
+        }
+        
+        @keyframes fadeInContent {
+            to {
+                opacity: 1;
+            }
+        }
+        
+        /* Fondo con estrellas */
+        .starfield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+        
+        .star {
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            animation: twinkle 4s infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+        
+        /* Flores que caen */
+        .flower {
+            position: absolute;
+            font-size: 2rem;
+            animation: fall linear infinite;
+            opacity: 0.9;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            z-index: 10;
+            filter: drop-shadow(0 0 10px rgba(253, 203, 110, 0.8));
+        }
+        
+        .flower:hover {
+            transform: scale(1.5) rotate(10deg);
+        }
+        
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+        
+        /* Gradientes dorados */
+        .gold-gradient {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 50%, #fff3cd 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .card-glow {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 237, 78, 0.1) 100%);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3), inset 0 0 30px rgba(255, 215, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .card-glow:hover {
+            box-shadow: 0 0 50px rgba(255, 215, 0, 0.5), inset 0 0 50px rgba(255, 215, 0, 0.2);
+            transform: translateY(-5px);
+            transition: all 0.3s ease;
+        }
+        
+        /* Animaciones */
+        .pulse-gold {
+            animation: pulseGold 2s infinite;
+        }
+        
+        @keyframes pulseGold {
+            0%, 100% {
+                text-shadow: 0 0 5px #ffd700, 0 0 10px #ffd700, 0 0 15px #ffd700;
+            }
+            50% {
+                text-shadow: 0 0 10px #ffd700, 0 0 20px #ffd700, 0 0 30px #ffd700, 0 0 40px #ffd700;
+            }
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .heart-beat {
+            animation: heartBeat 1.5s infinite;
+        }
+        
+        @keyframes heartBeat {
+            0% { transform: scale(1); }
+            14% { transform: scale(1.3); }
+            28% { transform: scale(1); }
+            42% { transform: scale(1.3); }
+            70% { transform: scale(1); }
+        }
+        
+        /* Lluvia de amor */
+        .love-rain {
+            position: absolute;
+            font-size: 1.5rem;
+            animation: loveRain linear infinite;
+            opacity: 0.8;
+            pointer-events: none;
+            z-index: 5;
+        }
+        
+        @keyframes loveRain {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+        
+        /* Partículas de luz */
+        .light-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #ffd700;
+            border-radius: 50%;
+            animation: floatUp 4s linear infinite;
+            opacity: 0;
+        }
+        
+        @keyframes floatUp {
+            0% {
+                opacity: 0;
+                transform: translateY(100vh) scale(0);
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100vh) scale(1.5);
+            }
+        }
+        
+        /* Efecto de resplandor */
+        .glow-effect {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: moveGlow 10s infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes moveGlow {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(100px, -50px); }
+            50% { transform: translate(-50px, -100px); }
+            75% { transform: translate(-100px, 50px); }
+        }
+    </style>
+</head>
+<body class="min-h-screen relative">
+    <!-- Flor inicial que brota -->
+    <div id="introFlower" class="intro-flower">🌻</div>
+    
+    <!-- Campo de estrellas -->
+    <div class="starfield" id="starfield"></div>
+    
+    <!-- Partículas de luz -->
+    <div id="lightParticles"></div>
+    
+    <!-- Efectos de resplandor -->
+    <div class="glow-effect" style="top: 20%; left: 10%;"></div>
+    <div class="glow-effect" style="top: 60%; right: 20%; animation-delay: 5s;"></div>
+    
+    <!-- Flores animadas -->
+    <div id="flowers-container"></div>
+    
+    <!-- Lluvia de amor -->
+    <div id="love-rain-container"></div>
+    
+    <!-- Contenido principal -->
+    <div class="main-content relative z-20">
+        <!-- Header -->
+        <header class="text-center py-8">
+            <h1 class="text-5xl md:text-7xl font-bold gold-gradient dancing-script pulse-gold">
+                <i class="fas fa-sun text-yellow-400"></i>
+                21 de Septiembre
+                <i class="fas fa-sun text-yellow-400"></i>
+            </h1>
+            <p class="text-xl md:text-2xl text-yellow-300 mt-4">Día del Amor</p>
+        </header>
+        
+        <!-- Mensaje del Día -->
+        <section class="text-center py-8">
+            <div class="container mx-auto px-4">
+                <div class="card-glow rounded-2xl p-8 md:p-12 max-w-2xl mx-auto">
+                    <div class="text-6xl mb-4">🎉</div>
+                    <h2 class="text-4xl md:text-6xl font-bold text-yellow-300 mb-6">
+                        ¡Hoy es el día!
+                    </h2>
+                    <p class="text-2xl md:text-3xl text-yellow-200 font-semibold">
+                        Feliz 21 de Septiembre, mi amor
+                    </p>
+                    <div class="text-4xl mt-6 heart-beat">❤️</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Mensaje Especial para Estefany -->
+        <section class="py-12">
+            <div class="container mx-auto px-4">
+                <div class="max-w-4xl mx-auto">
+                    <h2 class="text-3xl md:text-4xl font-semibold text-yellow-300 text-center mb-8">
+                        <i class="fas fa-heart text-red-500 heart-beat"></i> Para Estefany <i class="fas fa-heart text-red-500 heart-beat"></i>
+                    </h2>
+                    <div class="card-glow rounded-2xl p-8 md:p-12 text-center floating">
+                        <div class="text-8xl mb-6">🌻</div>
+                        <h3 class="text-2xl md:text-3xl font-semibold text-yellow-200 mb-6 dancing-script">Mi amor por ti florece cada día</h3>
+                        <p class="text-lg md:text-xl text-yellow-100 mb-8 leading-relaxed">
+                            Estefany, como las flores amarillas que iluminan este 21 de septiembre, tú iluminas mi vida con tu sonrisa, 
+                            tu alegría y tu esencia única. Cada momento a tu lado es como un girasol buscando el sol, 
+                            porque tú eres la luz que guía mi camino y la razón por la que mi corazón late con fuerza.
+                        </p>
+                        <p class="text-lg md:text-xl text-yellow-100 mb-8 leading-relaxed">
+                            En este día especial, quiero que sepas que mi amor por ti es tan infinito como el cielo, 
+                            tan puro como una flor recién abierta y tan eterno como el tiempo que compartimos juntos. 
+                            Eres la flor más hermosa en el jardín de mi existencia.
+                        </p>
+                        <div class="flex justify-center gap-4 mb-6">
+                            <div class="text-6xl">💛</div>
+                            <div class="text-6xl">🌻</div>
+                            <div class="text-6xl">💛</div>
+                        </div>
+                        <p class="text-xl md:text-2xl text-yellow-200 font-semibold dancing-script">
+                            Con todo mi amor, para siempre
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Frases de Amor -->
+        <section class="py-12">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-semibold text-yellow-300 text-center mb-8">
+                    <i class="fas fa-quote-left text-yellow-400"></i> Frases para ti <i class="fas fa-quote-right text-yellow-400"></i>
+                </h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                    <div class="card-glow rounded-2xl p-6 text-center floating">
+                        <div class="text-5xl mb-4">🌻</div>
+                        <p class="text-yellow-100 italic">"Eres el girasol que ilumina mi jardín y el sol que calienta mi corazón."</p>
+                    </div>
+                    <div class="card-glow rounded-2xl p-6 text-center floating" style="animation-delay: 0.5s;">
+                        <div class="text-5xl mb-4">🌼</div>
+                        <p class="text-yellow-100 italic">"Como una flor amarilla en primavera, tú haces que mi vida florezca con colores."</p>
+                    </div>
+                    <div class="card-glow rounded-2xl p-6 text-center floating" style="animation-delay: 1s;">
+                        <div class="text-5xl mb-4">🌻</div>
+                        <p class="text-yellow-100 italic">"En el campo de mi existencia, tú eres la flor más hermosa que jamás imaginé encontrar."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Footer -->
+        <footer class="text-center py-8 text-yellow-300">
+            <p class="text-lg">🌻 Para Estefany, con todo mi amor este 21 de Septiembre 🌻</p>
+            <p class="mt-2">Celebrando nuestro amor con flores amarillas</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Crear campo de estrellas
+        const starfield = document.getElementById('starfield');
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.width = star.style.height = Math.random() * 3 + 'px';
+            star.style.animationDelay = Math.random() * 4 + 's';
+            starfield.appendChild(star);
+        }
+        
+        // Crear partículas de luz
+        const lightParticles = document.getElementById('lightParticles');
+        function createLightParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'light-particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 4 + 's';
+            lightParticles.appendChild(particle);
+            
+            setTimeout(() => particle.remove(), 4000);
+        }
+        
+        setInterval(createLightParticle, 300);
+        
+        // Flores que caen (comienzan después de la animación inicial)
+        const flowers = ['🌻', '🌼', '🌻', '🌺', '🌸', '🌻'];
+        const container = document.getElementById('flowers-container');
+        
+        function createFlower() {
+            const flower = document.createElement('div');
+            flower.className = 'flower';
+            flower.innerHTML = flowers[Math.floor(Math.random() * flowers.length)];
+            flower.style.left = Math.random() * 100 + '%';
+            flower.style.animationDuration = Math.random() * 3 + 5 + 's';
+            flower.style.fontSize = Math.random() * 20 + 20 + 'px';
+            
+            flower.addEventListener('click', function() {
+                this.style.transform = 'scale(2) rotate(720deg)';
+                this.style.opacity = '0';
+                setTimeout(() => this.remove(), 500);
+            });
+            
+            container.appendChild(flower);
+            
+            setTimeout(() => {
+                flower.remove();
+            }, 8000);
+        }
+        
+        // Comenzar la lluvia de flores después de la animación inicial
+        setTimeout(() => {
+            setInterval(createFlower, 600);
+            // Crear algunas flores iniciales
+            for (let i = 0; i < 10; i++) {
+                setTimeout(createFlower, i * 200);
+            }
+        }, 3000);
+        
+        // Lluvia de corazones
+        const loveSymbols = ['❤️', '💛', '💖', '💕', '💗'];
+        const loveRainContainer = document.getElementById('love-rain-container');
+        
+        function createLoveRain() {
+            const love = document.createElement('div');
+            love.className = 'love-rain';
+            love.innerHTML = loveSymbols[Math.floor(Math.random() * loveSymbols.length)];
+            love.style.left = Math.random() * 100 + '%';
+            love.style.animationDuration = Math.random() * 3 + 4 + 's';
+            love.style.fontSize = Math.random() * 10 + 15 + 'px';
+            
+            loveRainContainer.appendChild(love);
+            
+            setTimeout(() => {
+                love.remove();
+            }, 7000);
+        }
+        
+        // Comenzar la lluvia de amor después de la animación inicial
+        setTimeout(() => {
+            setInterval(createLoveRain, 1000);
+            // Crear algunos corazones iniciales
+            for (let i = 0; i < 5; i++) {
+                setTimeout(createLoveRain, i * 300);
+            }
+        }, 3000);
+        
+        // Efecto de parallax al mover el mouse
+        document.addEventListener('mousemove', (e) => {
+            const flowers = document.querySelectorAll('.flower');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            flowers.forEach((flower, index) => {
+                const speed = (index % 3 + 1) * 0.5;
+                flower.style.transform += ` translate(${x * speed}px, ${y * speed}px)`;
+            });
+        });
+    </script>
+</body>
+</html>
